@@ -1,7 +1,9 @@
 {
   "name": "Bring!",
+  "description": "Converts the written representation of quantity and unit of an item added by alexa into the numberic representation.",
   "version": "1.0.0",
   "main": "index.js",
+  "author": "Jan-Niclas Gladbach <jniclasg@googlemail.com>",
   "license": "MIT",
   "dependencies": {
     "bring-shopping": "^1.4.2"
