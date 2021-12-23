@@ -1,0 +1,16 @@
+# name: Docker Image CI
+
+# on:
+#   push:
+#     branches: [ main ]
+#   workflow_dispatch:
+
+# jobs:
+#   Build:
+#     runs-on: [ niiclas ]
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Container down
+#       run: docker-compose down -v
+#     - name: Start Container
+#       run: docker-compose up -d --remove-orphans

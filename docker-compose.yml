@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  bring:
+    image: node
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    restart: always
+    command: sh -c "yarn install && yarn start"
+    environment:
+      BRING_USER_MAIL: ""
+      BRING_USER_PASSWORD: ""
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    
