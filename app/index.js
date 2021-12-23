@@ -184,25 +184,35 @@ async function login(){
 var bring = null
 
 /**
+ * Iterates through the items of the first shopping list and checks if the name contains quanitity and unit.
+ * If so, if executes the toItem function to seperate name and specification.
  * 
  * @returns 
  */
 async function main() {
 
+    // check if already logged in
     if(bring == null){
+        // run tests
         var testResult = await test()
         if(!testResult){
             process.exit(1);
         }
+        // if tests were successful login
         bring = await login();
     }
     
+    // get list ids
     const lists = await bring.loadLists();
+    // get id of the first list
     const listId = lists.lists[0].listUuid
-
+    // get the list' items
     const items = await bring.getItems(listId);
+    // iterate through all items
     for(let item of items.purchase){
+        // run the toItem function
         const {quantity, type, transformed} = await toItem(item.name);
+        // if a transformation was made replace the original item with the new one
         if(transformed){
             console.log(item.name, ">>", type, ">", quantity)
             await bring.removeItem(listId, item.name)
@@ -211,4 +221,5 @@ async function main() {
     }
 }
 
+// run the script each 10 seconds
 setInterval(main, 10000);
